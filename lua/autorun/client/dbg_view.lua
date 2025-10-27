@@ -458,6 +458,10 @@ local function postDrawTranslucentRenderables()
 
 	if not override then return end
 
+	wep = ply:GetActiveWeapon()
+
+	if wep.IsOctoWeapon then return end
+
 	local aim = (ply.viewAngs or ply:EyeAngles()):Forward()
         local tr = hook.Run('dbg-view.chTraceOverride')
 	if not tr then
@@ -500,18 +504,13 @@ local function playerButtonDown(ply, key)
 
 	if key == k_freeview then lookOffActive = true end
 
-	--[[
-
-	Оставлю это на случай, если кто-то решит подогнать новый ганпак под этот view
-
 	if key == k_sights then
 		local wep = ply:GetActiveWeapon()
-		if IsValid(wep) and wep:GetNetVar('IsReady') then
+		if IsValid(wep) and wep:GetNWBool('IsReady') then
 			dbgView.useSights = not dbgView.useSights
 		end
 	end
 
-	]]--
 end
 local function playerButtonUp(ply, key)
 	if key == k_freeview and IsFirstTimePredicted() then lookOffActive = false end
