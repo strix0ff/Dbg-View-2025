@@ -563,7 +563,7 @@ local function turnOff()
 	hook.Remove('InputMouseApply', 'dbg-view')
 	hook.Remove('PlayerButtonDown', 'dbg-view')
 	hook.Remove('PlayerButtonUp', 'dbg-view')
-	-- hook.Remove('PostDrawTranslucentRenderables', 'dbg-view')
+	hook.Remove('PostDrawTranslucentRenderables', 'dbg-view')
 	hook.Remove('ShouldDrawLocalPlayer', 'dbg-view')
 
 	dbgView.hideHead(false)
